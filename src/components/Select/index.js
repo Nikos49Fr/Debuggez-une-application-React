@@ -18,7 +18,7 @@ const Select = ({
   const changeValue = (newValue) => {
     onChange(newValue); // ajout argument newValue
     setValue(newValue);
-    setCollapsed(newValue);
+    setCollapsed(true); // changement à true, car on veut que le sélecteur se ferme à chaque changement de choix, ce qui n'était pas pris en compte pour le choix "toutes", à cause de la valeur "null".
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
