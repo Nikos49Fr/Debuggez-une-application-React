@@ -12,7 +12,7 @@ export const MONTHS = {
   10: "novembre",
   11: "décembre",
 };
-// Correction : la méthode native getMonth de la fonction date (date.getMonth) renvoi les numéros de mois de 0 à 11, et non de 1 à 12.
+// Correction : la méthode native getMonth() renvoi les numéros de mois de 0 à 11, et non de 1 à 12.
 // Correction de la numétation dans la constante MONTHS
 
 export const getMonth = (date) => MONTHS[date.getMonth()];
