@@ -10,17 +10,27 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
-    //   Correction : inversion du signe dans la fonction de comparaison afin qu'on obtienne les slide dans l'ordre du plus récent ou plus ancien.
+    //   Correction : inversion du signe dans la fonction de comparaison afin qu'on obtienne les slides dans l'ordre du plus récent ou plus ancien.
+
+    // Correction/modification du Slider :
+    // * byDateDesc.lengh => il faut lui enlever 1 pour avoir l'ordre décroissant des slides
+    // * il est nécessaire de nettoyer le setTimeout avant d'en lancer un nouveau, que ce soit en cliquant sur un bouton radio, ou bien lors de l'autoplay
+    // * création de la constante timeoutId pour récupérer l'Id du setTimeout
+    // * ajout d'une fonction de cleanup dans le useEffect
+    // * ajout aux dépendances de index pour prendre en compte le changement manuel de de slide par bouton radio
+    // et de data afin de lancer l'autoplay au chargement des data (sinon pas d'autoplay au premier chargement.)
   const nextCard = () => {
-    setTimeout(
+    const timeoutId = setTimeout(
       () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
-    //   Correction : byDateDesc.lengh => il faut lui enlever 1
     );
+    return timeoutId;
   };
   useEffect(() => {
-    nextCard();
-  });
+    const id = nextCard();
+    return () => {clearTimeout(id)};
+  }, [index, data]);
+  
   return (
     <div className="SlideCardList">
         {byDateDesc?.map((event, idx) => (
@@ -48,8 +58,9 @@ const Slider = () => {
                     key={event.title}
                     type="radio"
                     name="radio-button"
-                    // passage de "checked" à "defaultChecked" (champ non contrôlé)
-                    defaultChecked={index === radioIdx}
+                    // "checked" = champ contrôlé : ajout d'un onChange
+                    onChange={() => setIndex(radioIdx)}
+                    checked={index === radioIdx}
                 />
                 ))}
             </div>
