@@ -48,7 +48,8 @@ const Slider = () => {
                     key={event.title}
                     type="radio"
                     name="radio-button"
-                    checked={index === radioIdx}
+                    // passage de "checked" à "defaultChecked" (champ non contrôlé)
+                    defaultChecked={index === radioIdx}
                 />
                 ))}
             </div>
