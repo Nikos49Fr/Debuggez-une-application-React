@@ -13,7 +13,7 @@ const Slider = () => {
     //   Correction : inversion du signe dans la fonction de comparaison afin qu'on obtienne les slides dans l'ordre du plus récent ou plus ancien.
 
     // Correction/modification du Slider :
-    // * byDateDesc.lengh => il faut lui enlever 1 pour avoir l'ordre décroissant des slides
+    // * byDateDesc.lengh => il faut lui enlever 1 pour avoir le bon nombre de slides
     // * il est nécessaire de nettoyer le setTimeout avant d'en lancer un nouveau, que ce soit en cliquant sur un bouton radio, ou bien lors de l'autoplay
     // * création de la constante timeoutId pour récupérer l'Id du setTimeout
     // * ajout d'une fonction de cleanup dans le useEffect
