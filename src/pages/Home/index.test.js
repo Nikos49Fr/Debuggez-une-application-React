@@ -73,6 +73,13 @@ describe('When a page is created', () => {
         );
 
         expect(cards).toHaveLength(mockData.events.length);
+
+        expect(
+            within(eventsContainer).getByText(mockData.events[0].title)
+        ).toBeInTheDocument();
+        expect(
+            within(eventsContainer).getByText(mockData.events[1].title)
+        ).toBeInTheDocument();
     });
 
     it('a list a people is displayed', async () => {
@@ -86,6 +93,13 @@ describe('When a page is created', () => {
         );
 
         expect(cards).not.toHaveLength(0);
+
+        expect(
+            within(peopleSection).getByText('Jean-Baptiste')
+        ).toBeInTheDocument();
+        expect(
+            within(peopleSection).getByText('Directeur marketing')
+        ).toBeInTheDocument();
     });
 
     it('a footer is displayed', async () => {
@@ -102,5 +116,6 @@ describe('When a page is created', () => {
         const img = await within(footer).findByTestId('card-image-testid');
 
         expect(img).toBeInTheDocument();
+        expect(within(footer).getByText('Événement B')).toBeInTheDocument();
     });
 });
