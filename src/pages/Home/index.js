@@ -115,7 +115,7 @@ const Page = () => {
     </main>
     <footer className="row">
       <div className="col presta">
-        <h3>Notre derniére prestation</h3>
+        <h3>Notre dernière prestation</h3>
         { // code ajouté/modifié
         // ternaire sur "last" pour attendre le chargement de data avant de rendre le composant EventCard
         !last ?
